@@ -1,0 +1,100 @@
+{% extends 'dashboardbase.html.twig' %}
+{% block title %}Eleve index{% endblock %}
+    {% block stylesheets %}
+        <link href="\vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        <!-- Custom styles for this template-->
+        <link href="\css/sb-admin-2.min.css" rel="stylesheet">
+
+    {% endblock %}
+
+
+
+{% block body %}
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand ml-2 " href="#"> Liste des Eleves > </a>
+        <button class="navbar-toggler"  style="background-color: slategrey"
+                type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor03">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('eleve_new') }}"> ajouter un profil <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+<div class="card shadow m-4">
+    <div class="card-body">
+        <div class="table-responsive" style="font-size: 12px">
+
+    <table class="table table-bordered" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Matricule</th>
+                <th>Prenoms</th>
+                <th>Nom</th>
+                <th>PaysDeNaissance</th>
+                <th>LieuDeNaissance</th>
+                <th>DateDeNaissance</th>
+                <th>Sexe</th>
+                <th>AdresseDeResidence</th>
+                <th>TelephoneDomicile</th>
+                <th>TelephoneEleve</th>
+                <th>AnneeDarrivee</th>
+                <th>ParentResident</th>
+                <th>AutreParentResident</th>
+                <th>PetitFrereOuSoeur</th>
+                <th>FrereOuSoeur</th>
+                <th>PreferenceManuel</th>
+                <th>TolerenceParacetamol</th>
+                <th>MaladieSignale</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for eleve in eleves %}
+            <tr>
+                <td>{{ eleve.id }}</td>
+                <td>{{ eleve.Matricule }}</td>
+                <td>{{ eleve.Prenoms }}</td>
+                <td>{{ eleve.Nom }}</td>
+                <td>{{ eleve.PaysDeNaissance }}</td>
+                <td>{{ eleve.LieuDeNaissance }}</td>
+                <td>{{ eleve.DateDeNaissance ? eleve.DateDeNaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ eleve.Sexe }}</td>
+                <td>{{ eleve.AdresseDeResidence }}</td>
+                <td>{{ eleve.TelephoneDomicile }}</td>
+                <td>{{ eleve.TelephoneEleve }}</td>
+                <td>{{ eleve.AnneeDarrivee ? eleve.AnneeDarrivee|date('Y-m-d') : '' }}</td>
+                <td>{{ eleve.ParentResident }}</td>
+                <td>{{ eleve.AutreParentResident }}</td>
+                <td>{{ eleve.PetitFrereOuSoeur }}</td>
+                <td>{{ eleve.FrereOuSoeur }}</td>
+                <td>{{ eleve.PreferenceManuel }}</td>
+                <td>{{ eleve.TolerenceParacetamol }}</td>
+                <td>{{ eleve.MaladieSignale }}</td>
+                <td>
+                    <a href="{{ path('eleve_show', {'id': eleve.id}) }}">show</a>
+                    <a href="{{ path('eleve_edit', {'id': eleve.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="20">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        </div>
+    </div>
+</div>
+
+    <a href="{{ path('eleve_new') }}">Create new</a>
+{% endblock %}

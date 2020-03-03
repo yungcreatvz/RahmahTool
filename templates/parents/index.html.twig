@@ -1,0 +1,80 @@
+{% extends 'dashboardbase.html.twig' %}
+{% block title %}Base des Parents {% endblock %}
+    {% block stylesheets %}
+        <link href="\vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        <!-- Custom styles for this template-->
+        <link href="\css/sb-admin-2.min.css" rel="stylesheet">
+    {% endblock %}
+{% block body %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand ml-2 " href="#"> Liste des Parents > </a>
+        <button class="navbar-toggler"  style="background-color: slategrey"
+                type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor03">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('parents_new') }}"> ajouter un profil <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+<div class="card shadow m-4">
+    <div class="card-body">
+        <div class="table-responsive" style="font-size: 12px">
+    <table class="table table-bordered" width="100%" cellspacing="0" >
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CodeFamille</th>
+                <th>PrenomParent</th>
+                <th>NomParent</th>
+                <th>SecteurDactivite</th>
+                <th>Profession</th>
+                <th>TelephonePortable1</th>
+                <th>TelephonePortable2</th>
+                <th>TelephoneBureau</th>
+                <th>TelephoneFixeMaison</th>
+                <th>Email</th>
+                <th>Adresse</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for parent in parents %}
+            <tr>
+                <td>{{ parent.id }}</td>
+                <td>{{ parent.CodeFamille }}</td>
+                <td>{{ parent.PrenomParent }}</td>
+                <td>{{ parent.NomParent }}</td>
+                <td>{{ parent.SecteurDactivite }}</td>
+                <td>{{ parent.Profession }}</td>
+                <td>{{ parent.TelephonePortable1 }}</td>
+                <td>{{ parent.TelephonePortable2 }}</td>
+                <td>{{ parent.TelephoneBureau }}</td>
+                <td>{{ parent.TelephoneFixeMaison }}</td>
+                <td>{{ parent.Email }}</td>
+                <td>{{ parent.Adresse }}</td>
+                <td>
+                    <a href="{{ path('parents_show', {'id': parent.id}) }}">show</a>
+                    <a href="{{ path('parents_edit', {'id': parent.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('parents_new') }}">Create new </a>
+</div>
+</div>
+</div>
+
+{% endblock %}

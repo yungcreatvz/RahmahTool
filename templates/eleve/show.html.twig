@@ -1,0 +1,98 @@
+{% extends 'dashboardbase.html.twig' %}
+{% block title %}Base des Parents {% endblock %}
+    {% block stylesheets %}
+        <link href="\vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        <!-- Custom styles for this template-->
+        <link href="\css/sb-admin-2.min.css" rel="stylesheet">
+    {% endblock %}
+{% block body %}
+    <h1>Eleve</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ eleve.id }}</td>
+            </tr>
+            <tr>
+                <th>Matricule</th>
+                <td>{{ eleve.Matricule }}</td>
+            </tr>
+            <tr>
+                <th>Prenoms</th>
+                <td>{{ eleve.Prenoms }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ eleve.Nom }}</td>
+            </tr>
+            <tr>
+                <th>PaysDeNaissance</th>
+                <td>{{ eleve.PaysDeNaissance }}</td>
+            </tr>
+            <tr>
+                <th>LieuDeNaissance</th>
+                <td>{{ eleve.LieuDeNaissance }}</td>
+            </tr>
+            <tr>
+                <th>DateDeNaissance</th>
+                <td>{{ eleve.DateDeNaissance ? eleve.DateDeNaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Sexe</th>
+                <td>{{ eleve.Sexe }}</td>
+            </tr>
+            <tr>
+                <th>AdresseDeResidence</th>
+                <td>{{ eleve.AdresseDeResidence }}</td>
+            </tr>
+            <tr>
+                <th>TelephoneDomicile</th>
+                <td>{{ eleve.TelephoneDomicile }}</td>
+            </tr>
+            <tr>
+                <th>TelephoneEleve</th>
+                <td>{{ eleve.TelephoneEleve }}</td>
+            </tr>
+            <tr>
+                <th>AnneeDarrivee</th>
+                <td>{{ eleve.AnneeDarrivee ? eleve.AnneeDarrivee|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ParentResident</th>
+                <td>{{ eleve.ParentResident }}</td>
+            </tr>
+            <tr>
+                <th>AutreParentResident</th>
+                <td>{{ eleve.AutreParentResident }}</td>
+            </tr>
+            <tr>
+                <th>PetitFrereOuSoeur</th>
+                <td>{{ eleve.PetitFrereOuSoeur }}</td>
+            </tr>
+            <tr>
+                <th>FrereOuSoeur</th>
+                <td>{{ eleve.FrereOuSoeur }}</td>
+            </tr>
+            <tr>
+                <th>PreferenceManuel</th>
+                <td>{{ eleve.PreferenceManuel }}</td>
+            </tr>
+            <tr>
+                <th>TolerenceParacetamol</th>
+                <td>{{ eleve.TolerenceParacetamol }}</td>
+            </tr>
+            <tr>
+                <th>MaladieSignale</th>
+                <td>{{ eleve.MaladieSignale }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('eleve_index') }}">back to list</a>
+
+    <a href="{{ path('eleve_edit', {'id': eleve.id}) }}">edit</a>
+
+    {{ include('eleve/_delete_form.html.twig') }}
+{% endblock %}

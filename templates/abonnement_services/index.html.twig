@@ -1,0 +1,86 @@
+{% extends 'dashboardbase.html.twig' %}
+{% block title %}Abonnement & Services {% endblock %}
+    {% block stylesheets %}
+        <link href="\vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        <!-- Custom styles for this template-->
+        <link href="\css/sb-admin-2.min.css" rel="stylesheet">
+
+    {% endblock %}
+
+{% block body %}
+    <span class="card shadow m-4">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand ml-2 " href="#"> Liste des services > </a>
+        <button class="navbar-toggler"  style="background-color: slategrey"
+                type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor03">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('eleve_new') }}"> ajouter un Abonnement/service <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    </span>
+
+<div class="card shadow m-4">
+    <div class="card-body">
+    <h1> Abonnement & Services </h1>
+    <div class="table-responsive" style="font-size: 12px">
+    <table class="table table-bordered" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Gouter</th>
+                <th>Cantine</th>
+                <th>Assurance</th>
+                <th>Kimono</th>
+                <th>ZoneDeTranport</th>
+                <th>TauxDeTransport</th>
+                <th>SurvetementEPS</th>
+                <th>TeeshirtEPS</th>
+                <th>Blouse</th>
+                <th>Bonnets</th>
+                <th>CoursDuSoir</th>
+                <th>PenaliteRetard</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for abonnement_service in abonnement_services %}
+            <tr>
+                <td>{{ abonnement_service.id }}</td>
+                <td>{{ abonnement_service.Gouter ? abonnement_service.Gouter|join('Oui') : 'Non' }}</td>
+                <td>{{ abonnement_service.Cantine ? 'Oui' : 'Non' }}</td>
+                <td>{{ abonnement_service.Assurance ? 'Oui' : 'Non' }}</td>
+                <td>{{ abonnement_service.Kimono ? 'Oui' : 'Non' }}</td>
+                <td>{{ abonnement_service.ZoneDeTranport ? abonnement_service.ZoneDeTranport|join(',') : '' }}</td>
+                <td>{{ abonnement_service.TauxDeTransport }}</td>
+                <td>{{ abonnement_service.SurvetementEPS ? abonnement_service.SurvetementEPS|join(', ') : '' }}</td>
+                <td>{{ abonnement_service.TeeshirtEPS ? abonnement_service.TeeshirtEPS|join(', ') : '' }}</td>
+                <td>{{ abonnement_service.Blouse ? abonnement_service.Blouse|join('array,item') : '01'}}</td>
+                <td>{{ abonnement_service.Bonnets ? abonnement_service.Bonnets|join(', ') : '' }}</td>
+                <td>{{ abonnement_service.CoursDuSoir ? abonnement_service.CoursDuSoir|join(', ') : '' }}</td>
+                <td>{{ abonnement_service.PenaliteRetard ? abonnement_service.PenaliteRetard|join(', ') : '' }}</td>
+                <td>
+                    <a href="{{ path('abonnement_services_show', {'id': abonnement_service.id}) }}">show</a>
+                    <a href="{{ path('abonnement_services_edit', {'id': abonnement_service.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('abonnement_services_new') }}">Create new</a>
+    </div>
+    </div>
+</div>
+{% endblock %}

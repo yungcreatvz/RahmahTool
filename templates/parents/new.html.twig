@@ -1,0 +1,22 @@
+{% extends 'dashboardbase.html.twig' %}
+{% block title %} Nouveau profil Paren{% endblock %}
+    {% block stylesheets %}
+        <link href="\vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        <!-- Custom styles for this template-->
+        <link href="\css/sb-admin-2.min.css" rel="stylesheet">
+    {% endblock %}
+{% block body %}
+
+<div class="card shadow m-4">
+    <div class="card-body ">
+    <div class="container-fluid mb-2">
+    <h2> Créer profil de parent</h2>
+        </div>
+
+    {{ include('parents/_form.html.twig') }}
+
+    <a class="btn btn-primary btn-lg float-right" href="{{ path('parents_index') }}">back to list</a>
+    </div>
+</div>
+{% endblock %}

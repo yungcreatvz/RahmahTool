@@ -1,0 +1,68 @@
+{% extends 'dashboardbase.html.twig' %}
+{% block title %}Base des Parents {% endblock %}
+    {% block stylesheets %}
+        <link href="\vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        <!-- Custom styles for this template-->
+        <link href="\css/sb-admin-2.min.css" rel="stylesheet">
+    {% endblock %}
+{% block body %}
+    <table class="w3-small">
+        <tbody>
+            <tr>
+                <th scope="col">Id</th>
+                <td >{{ parent.id }}</td>
+            </tr>
+            <tr>
+                <th scope="col">CodeFamille</th>
+                <td>{{ parent.CodeFamille }}</td>
+            </tr>
+            <tr>
+                <th scope="col">PrenomParent</th>
+                <td>{{ parent.PrenomParent }}</td>
+            </tr>
+            <tr>
+                <th scope="col">NomParent</th>
+                <td>{{ parent.NomParent }}</td>
+            </tr>
+            <tr>
+                <th scope="col">SecteurDactivite</th>
+                <td>{{ parent.SecteurDactivite }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Profession</th>
+                <td>{{ parent.Profession }}</td>
+            </tr>
+            <tr>
+                <th scope="col">TelephonePortable1</th>
+                <td>{{ parent.TelephonePortable1 }}</td>
+            </tr>
+            <tr>
+                <th scope="col">TelephonePortable2</th>
+                <td>{{ parent.TelephonePortable2 }}</td>
+            </tr>
+            <tr>
+                <th scope="col">TelephoneBureau</th>
+                <td>{{ parent.TelephoneBureau }}</td>
+            </tr>
+            <tr>
+                <th scope="col">TelephoneFixeMaison</th>
+                <td>{{ parent.TelephoneFixeMaison }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Email</th>
+                <td>{{ parent.Email }}</td>
+            </tr>
+            <tr>
+                <th scope="col">Adresse</th>
+                <td>{{ parent.Adresse }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('parents_index') }}">back to list</a>
+
+    <a href="{{ path('parents_edit', {'id': parent.id}) }}">edit</a>
+
+    {{ include('parents/_delete_form.html.twig') }}
+{% endblock %}

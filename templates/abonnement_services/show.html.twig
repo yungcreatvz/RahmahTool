@@ -1,0 +1,80 @@
+{% extends 'dashboardbase.html.twig' %}
+    {% block stylesheets %}
+        <link href="\vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        <!-- Custom styles for this template-->
+        <link href="\css/sb-admin-2.min.css" rel="stylesheet">
+
+    {% endblock %}
+
+{% block title %}Abonnement & Services{% endblock %}
+
+{% block body %}
+    <h1>Abonnement & Services</h1>
+<div class="card shadow m-4">
+    <div class="card-body">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ abonnement_service.id }}</td>
+            </tr>
+            <tr>
+                <th>Gouter</th>
+                <td>{{ abonnement_service.Gouter ? abonnement_service.Gouter|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Cantine</th>
+                <td>{{ abonnement_service.Cantine ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Assurance</th>
+                <td>{{ abonnement_service.Assurance ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Kimono</th>
+                <td>{{ abonnement_service.Kimono ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>ZoneDeTranport</th>
+                <td>{{ abonnement_service.ZoneDeTranport ? abonnement_service.ZoneDeTranport|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>TauxDeTransport</th>
+                <td>{{ abonnement_service.TauxDeTransport }}</td>
+            </tr>
+            <tr>
+                <th>SurvetementEPS</th>
+                <td>{{ abonnement_service.SurvetementEPS ? abonnement_service.SurvetementEPS|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>TeeshirtEPS</th>
+                <td>{{ abonnement_service.TeeshirtEPS ? abonnement_service.TeeshirtEPS|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Blouse</th>
+                <td>{{ abonnement_service.Blouse ? abonnement_service.Blouse|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Bonnets</th>
+                <td>{{ abonnement_service.Bonnets ? abonnement_service.Bonnets|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>CoursDuSoir</th>
+                <td>{{ abonnement_service.CoursDuSoir ? abonnement_service.CoursDuSoir|join(', ') : '' }}</td>
+            </tr>
+            <tr>
+                <th>PenaliteRetard</th>
+                <td>{{ abonnement_service.PenaliteRetard ? abonnement_service.PenaliteRetard|join(', ') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('abonnement_services_index') }}">back to list</a>
+
+    <a href="{{ path('abonnement_services_edit', {'id': abonnement_service.id}) }}">edit</a>
+
+    {{ include('abonnement_services/_delete_form.html.twig') }}
+    </div>
+</div>
+{% endblock %}

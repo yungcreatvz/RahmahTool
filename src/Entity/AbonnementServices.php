@@ -1,0 +1,244 @@
+<?php
+
+namespace App\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\AbonnementServicesRepository")
+ */
+class AbonnementServices
+{
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $Gouter;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $Cantine;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $Assurance;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $Kimono;
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $ZoneDeTranport = [];
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $TauxDeTransport;
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $SurvetementEPS = [];
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $TeeshirtEPS = [];
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $Blouse = [];
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $Bonnets = [];
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $CoursDuSoir = [];
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $PenaliteRetard = [];
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $Taekwando;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getGouter(): ?bool
+    {
+        return $this->Gouter;
+    }
+
+    public function setGouter(bool $Gouter): self
+    {
+        $this->Gouter = $Gouter;
+
+        return $this;
+    }
+
+    public function getCantine(): ?bool
+    {
+        return $this->Cantine;
+    }
+
+    public function setCantine(bool $Cantine): self
+    {
+        $this->Cantine = $Cantine;
+
+        return $this;
+    }
+
+    public function getAssurance(): ?bool
+    {
+        return $this->Assurance;
+    }
+
+    public function setAssurance(bool $Assurance): self
+    {
+        $this->Assurance = $Assurance;
+
+        return $this;
+    }
+
+    public function getKimono(): ?bool
+    {
+        return $this->Kimono;
+    }
+
+    public function setKimono(bool $Kimono): self
+    {
+        $this->Kimono = $Kimono;
+
+        return $this;
+    }
+
+    public function getZoneDeTranport(): ?array
+    {
+        return $this->ZoneDeTranport;
+    }
+
+    public function setZoneDeTranport(array $ZoneDeTranport): self
+    {
+        $this->ZoneDeTranport = $ZoneDeTranport;
+
+        return $this;
+    }
+
+    public function getTauxDeTransport(): ?int
+    {
+        return $this->TauxDeTransport;
+    }
+
+    public function setTauxDeTransport(int $TauxDeTransport): self
+    {
+        $this->TauxDeTransport = $TauxDeTransport;
+
+        return $this;
+    }
+
+    public function getSurvetementEPS(): ?array
+    {
+        return $this->SurvetementEPS;
+    }
+
+    public function setSurvetementEPS(array $SurvetementEPS): self
+    {
+        $this->SurvetementEPS = $SurvetementEPS;
+
+        return $this;
+    }
+
+    public function getTeeshirtEPS(): ?array
+    {
+        return $this->TeeshirtEPS;
+    }
+
+    public function setTeeshirtEPS(array $TeeshirtEPS): self
+    {
+        $this->TeeshirtEPS = $TeeshirtEPS;
+
+        return $this;
+    }
+
+    public function getBlouse(): ?array
+    {
+        return $this->Blouse;
+    }
+
+    public function setBlouse(array $Blouse): self
+    {
+        $this->Blouse = $Blouse;
+
+        return $this;
+    }
+
+    public function getBonnets(): ?array
+    {
+        return $this->Bonnets;
+    }
+
+    public function setBonnets(array $Bonnets): self
+    {
+        $this->Bonnets = $Bonnets;
+
+        return $this;
+    }
+
+    public function getCoursDuSoir(): ?array
+    {
+        return $this->CoursDuSoir;
+    }
+
+    public function setCoursDuSoir(array $CoursDuSoir): self
+    {
+        $this->CoursDuSoir = $CoursDuSoir;
+
+        return $this;
+    }
+
+    public function getPenaliteRetard(): ?array
+    {
+        return $this->PenaliteRetard;
+    }
+
+    public function setPenaliteRetard(array $PenaliteRetard): self
+    {
+        $this->PenaliteRetard = $PenaliteRetard;
+
+        return $this;
+    }
+
+    public function getTaekwando(): ?bool
+    {
+        return $this->Taekwando;
+    }
+
+    public function setTaekwando(bool $Taekwando): self
+    {
+        $this->Taekwando = $Taekwando;
+
+        return $this;
+    }
+}
