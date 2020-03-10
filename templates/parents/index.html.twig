@@ -7,8 +7,10 @@
         <link href="\css/sb-admin-2.min.css" rel="stylesheet">
     {% endblock %}
 {% block body %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand ml-2 " href="#"> Liste des Parents > </a>
+
+    <span class="card shadow m-4" >
+    <nav class="navbar navbar-expand-lg navbar-light bg-gradient-secondary" style="color: white">
+        <a class="navbar-brand ml-2  text-white" href="#"> Liste des Parents > </a>
         <button class="navbar-toggler"  style="background-color: slategrey"
                 type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -17,14 +19,16 @@
         <div class="collapse navbar-collapse" id="navbarColor03">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ path('parents_new') }}"> ajouter un profil <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-gray-400" href="{{ path('eleve_new') }}"> ajouter un profil <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </div>
     </nav>
+    </span>
 
 <div class="card shadow m-4">
     <div class="card-body">
+        <span><h2 class="text-secondary mb-3"> Liste des profils de parent</h2></span>
         <div class="table-responsive" style="font-size: 12px">
     <table class="table table-bordered" width="100%" cellspacing="0" >
         <thead>
@@ -72,7 +76,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('parents_new') }}">Create new </a>
+    <a class="btn btn-primary btn" href="{{ path('parents_new') }}">Create new </a>
 </div>
 </div>
 </div>

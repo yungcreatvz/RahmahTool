@@ -37,9 +37,9 @@ class AbonnementServices
     private $Kimono;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="text")
      */
-    private $ZoneDeTranport = [];
+    private $ZoneDeTranport;
 
     /**
      * @ORM\Column(type="integer")
@@ -47,34 +47,34 @@ class AbonnementServices
     private $TauxDeTransport;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="boolean")
      */
-    private $SurvetementEPS = [];
+    private $SurvetementEPS;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="boolean")
      */
-    private $TeeshirtEPS = [];
+    private $TeeshirtEPS;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="boolean")
      */
-    private $Blouse = [];
+    private $Blouse;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="boolean")
      */
-    private $Bonnets = [];
+    private $Bonnets;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="boolean")
      */
-    private $CoursDuSoir = [];
+    private $CoursDuSoir;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="boolean")
      */
-    private $PenaliteRetard = [];
+    private $PenaliteRetard;
 
     /**
      * @ORM\Column(type="boolean")
@@ -134,12 +134,12 @@ class AbonnementServices
         return $this;
     }
 
-    public function getZoneDeTranport(): ?array
+    public function getZoneDeTranport(): ?string
     {
         return $this->ZoneDeTranport;
     }
 
-    public function setZoneDeTranport(array $ZoneDeTranport): self
+    public function setZoneDeTranport(string $ZoneDeTranport): self
     {
         $this->ZoneDeTranport = $ZoneDeTranport;
 
@@ -158,72 +158,72 @@ class AbonnementServices
         return $this;
     }
 
-    public function getSurvetementEPS(): ?array
+    public function getSurvetementEPS(): ?bool
     {
         return $this->SurvetementEPS;
     }
 
-    public function setSurvetementEPS(array $SurvetementEPS): self
+    public function setSurvetementEPS(bool $SurvetementEPS): self
     {
         $this->SurvetementEPS = $SurvetementEPS;
 
         return $this;
     }
 
-    public function getTeeshirtEPS(): ?array
+    public function getTeeshirtEPS(): ?bool
     {
         return $this->TeeshirtEPS;
     }
 
-    public function setTeeshirtEPS(array $TeeshirtEPS): self
+    public function setTeeshirtEPS(bool $TeeshirtEPS): self
     {
         $this->TeeshirtEPS = $TeeshirtEPS;
 
         return $this;
     }
 
-    public function getBlouse(): ?array
+    public function getBlouse(): ?bool
     {
         return $this->Blouse;
     }
 
-    public function setBlouse(array $Blouse): self
+    public function setBlouse(bool $Blouse): self
     {
         $this->Blouse = $Blouse;
 
         return $this;
     }
 
-    public function getBonnets(): ?array
+    public function getBonnets(): ?bool
     {
         return $this->Bonnets;
     }
 
-    public function setBonnets(array $Bonnets): self
+    public function setBonnets(bool $Bonnets): self
     {
         $this->Bonnets = $Bonnets;
 
         return $this;
     }
 
-    public function getCoursDuSoir(): ?array
+    public function getCoursDuSoir(): ?bool
     {
         return $this->CoursDuSoir;
     }
 
-    public function setCoursDuSoir(array $CoursDuSoir): self
+    public function setCoursDuSoir(bool $CoursDuSoir): self
     {
         $this->CoursDuSoir = $CoursDuSoir;
 
         return $this;
     }
 
-    public function getPenaliteRetard(): ?array
+    public function getPenaliteRetard(): ?text
     {
         return $this->PenaliteRetard;
     }
 
-    public function setPenaliteRetard(array $PenaliteRetard): self
+    public function setPenaliteRetard(bool $PenaliteRetard): self
     {
         $this->PenaliteRetard = $PenaliteRetard;
 

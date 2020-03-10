@@ -40,6 +40,9 @@ class ParentsController extends AbstractController
             $entityManager->persist($parent);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Nouveau Profil ajouté');
+
+
             return $this->redirectToRoute('parents_index');
         }
 

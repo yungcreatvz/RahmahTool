@@ -69,6 +69,8 @@ class AbonnementServicesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Nouveau Abonnement/service ajouté');
+
             return $this->redirectToRoute('abonnement_services_index');
         }
 

@@ -40,9 +40,7 @@ class EleveController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'Nouveau Profil ajouté');
-            return $this->redirectToRoute('eleve_indexentity only in this repository.
-
-');
+            return $this->redirectToRoute('eleve_index');
         }
 
         return $this->render('eleve/new.html.twig', [

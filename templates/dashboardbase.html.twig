@@ -34,7 +34,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ path('main_dashboard') }}">
                Tableau de bord </a>
         </li>
         <!-- Divider -->
@@ -42,7 +42,7 @@
 
         <!-- Heading -->
         <div class="sidebar-heading" >
-            Gestionaire de Scolarité
+            Gestionnaire de Scolarité
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -56,21 +56,20 @@
         </li>
         <br>
         <div class="sidebar-heading">
-            Gestionaire des Employés
+            Gestionnaire des Employés
         </div>
         <!-- Divider -->
         <hr class="sidebar-divider">
         <li class="nav-item">
 
-            <a class="nav-link" href="#">Profils des salariés  </a>
-            <a class="nav-link" href="#">Profils prestataires</a>
+            <a class="nav-link" href="{{path('salarie_index')}}">Profils des Employés  </a>
             <a class="nav-link" href="#">Paiements effectués</a>
 
         </li>
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            Gestionaire des Dépenses
+            Gestionnaire des Dépenses
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
@@ -87,7 +86,7 @@
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
 
-            <a class="nav-link" href="#">Gestion des utilisateurs </a>
+            <a class="nav-link" href="{{ path('u_index') }}">Gestion des utilisateurs </a>
             <a class="nav-link" href="#">Historique des actions</a>
 
         </li>
@@ -102,7 +101,7 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link " href="{{ path('Login') }}" >
+            <a class="nav-link " href="{{ path('app_logout') }}" >
                 Deconnexion
             </a>
         </li>
@@ -145,7 +144,7 @@
                 </form>
 
                 <!-- Topbar Navbar -->
-                <ul class="navbar-nav ml-auto">
+              {#  <ul class="navbar-nav ml-auto">
 
                     <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                     <li class="nav-item dropdown no-arrow d-sm-none">
@@ -273,7 +272,7 @@
                     </li>
 
                     <div class="topbar-divider d-none d-sm-block"></div>
-
+                        #}
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -304,8 +303,8 @@
 
                 <!-- Nav Item - User Information -->
                 <li class="nav-item dropdown no-arrow">
-                    <a class="nav-link dropdown-toggle" href="{{ path('Login') }}" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Deconnexion>
+                    <a class="nav-link dropdown-toggle" href="{{ path('app_logout') }}" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Deconnexion</span>
                     </a>
 
                 </li>
@@ -336,7 +335,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Wk Rahmahtool 2020</span>
+                    <span>Copyright &copy; Wk RahmahTool 2020</span>
                 </div>
             </div>
         </footer>
@@ -366,12 +365,12 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <a class="btn btn-primary" href="{{ path('app_logout') }}">Logout</a>
             </div>
         </div>
     </div>
 </div>
-{#
+
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
 <!-- Bootstrap core JavaScript-->

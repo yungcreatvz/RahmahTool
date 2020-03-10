@@ -3,17 +3,31 @@
 namespace App\DataFixtures;
 
 use App\Entity\Eleve;
+use App\Entity\Utilisateur;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Faker\Factory;
 
 
 class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $faker = Factory::create('fr-FR');
+        $faker = Factory::create('FR-fr');
         $Eleve =new Eleve();
 
+        // gérer les utilisateur
+        for( $i = 1; $i<=10 ; $i++ ){
+            $utilisateur= new Utilisateur();
+            $utilisateur->setPrenom($faker->firstname)
+                        ->setNom($faker->lastname)
+                        ->setEmail($faker->email)
+                        ->setRoles('ROLE_USER')
+                        ->getHash('password');
+
+        }
+
+// créer new eleves
         for ($i = 1; $i <= 30; $i++) {
 
             $Matricule = $faker->randomDigit ;
