@@ -6,12 +6,16 @@
         <!-- Custom styles for this template-->
         <link href="\css/sb-admin-2.min.css" rel="stylesheet">
     {% endblock %}
-{% block body %}
-    <h1>Eleve</h1>
 
-    <table class="table">
+{% block body %}
+<div class="container row" >
+
+<div class="card shadow mr-3 ml-3 col-8">
+    <div class="card-body">
+        <span><h1 class="text-secondary text-info mb-4 mt-3"> Profil de {{ eleve.prenoms }} {{ eleve.nom  }}  </h1> </span>
+    <table class="table table-hover">
         <tbody>
-            <tr>
+            <tr class="tr">
                 <th>Id</th>
                 <td>{{ eleve.id }}</td>
             </tr>
@@ -60,14 +64,6 @@
                 <td>{{ eleve.AnneeDarrivee ? eleve.AnneeDarrivee|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
-                <th>ParentResident</th>
-                <td>{{ eleve.ParentResident }}</td>
-            </tr>
-            <tr>
-                <th>AutreParentResident</th>
-                <td>{{ eleve.AutreParentResident }}</td>
-            </tr>
-            <tr>
                 <th>PetitFrereOuSoeur</th>
                 <td>{{ eleve.PetitFrereOuSoeur }}</td>
             </tr>
@@ -87,12 +83,65 @@
                 <th>MaladieSignale</th>
                 <td>{{ eleve.MaladieSignale }}</td>
             </tr>
+            <tr>
+                <th>Prénoms du parent</th>
+                <td>{{ parent.prenomParent }}</td>
+            </tr>
+            <tr>
+                <th>nom du parent</th>
+                <td>{{ parent.nomParent }}</td>
+            </tr>
+
+            <tr>
+                <th> Secteur D'activité</th>
+                <td>{{ parent.SecteurDactivite }}</td>
+            </tr>
+            <tr>
+                <th>Telephone Portable 1 du parent</th>
+                <td>{{ parent.TelephonePortable1 }}</td>
+            </tr>
+            <tr>
+                <th>Telephone Portable 2 du parent</th>
+                <td>{{ parent.TelephonePortable2 }}</td>
+            </tr>
+            <tr>
+                <th>Telephone Bureau </th>
+                <td>{{ parent.TelephoneBureau }}</td>
+            </tr>
+            <tr>
+                <th>Telephone Fixe Maison  </th>
+                <td>{{ parent.TelephoneFixeMaison }}</td>
+            </tr>
+
+            <tr>
+                <th>nom du parent</th>
+                <td>{{ parent.nomParent }}</td>
+            </tr>
+        
         </tbody>
     </table>
 
-    <a class="btn btn-primary btn-lg" href="{{ path('eleve_index') }}">back to list</a>
 
-    <a class="btn btn-primary btn-lg" href="{{ path('eleve_edit', {'id': eleve.id}) }}">edit</a>
+    <div class="container">
+    <a class="btn btn-primary btn" href="{{ path('eleve_index') }}">back to list</a>
+
+    <a class="btn btn-primary btn" href="{{ path('eleve_edit', {'id': eleve.id}) }}">edit</a>
 
     {{ include('eleve/_delete_form.html.twig') }}
+    </div>
+
+    </div>
+
+</div>
+    <div class="card shadow align-items-center bg-gray-400 col-lg-3"  >
+        <img class="img-fluid bg-gradient-light mt-4 mb-4" src="https://static.thenounproject.com/png/2861597-200.png">
+        <h3 class="text-white"> profil Scolaire </h3>
+        <span> Classe : {{ classe.classe }} </span>
+        <span> Option : {{ option.options }} </span>
+        <span> {{ eleve.options.count }}</span>
+
+
+    </div>
+</div>
+
 {% endblock %}

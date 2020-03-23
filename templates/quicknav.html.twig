@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block title %}  {{ title }} {% endblock%}
+
+{% block body %}
+    <body class="container-fluid" style="background-image: url(bpic.jpg); opacity: 0.8;">
+    <div class="jumbotron mt-4" style=" height: 600px; text-align:center; align-content:center; background-color: white">
+        <ul class="h1 m-5">
+            <li class="mb-5">
+                <a href="{{ path('annee_academique_index') }}"> Annee academique</a>
+            </li>
+            <li class="mb-5">
+                <a href="{{ path('classe_index')  }}"> classe</a>
+            </li>
+            <li class="mb-5">
+                <a href="{{ path('option_index') }}"> option </a>
+            </li>
+
+        </ul>
+    </div>
+    </div>
+    </body>
+{% endblock %}

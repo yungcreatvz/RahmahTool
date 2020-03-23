@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -71,15 +73,6 @@ class Eleve
      */
     private $AnneeDarrivee;
 
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $ParentResident;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $AutreParentResident;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -110,6 +103,38 @@ class Eleve
      * @ORM\Column(type="integer")
      */
     private $CodeFamille;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Parents", mappedBy="Eleve", cascade={"persist"})
+     */
+    private $Parent;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Classe", inversedBy="eleve")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $classe;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Option", inversedBy="Eleves")
+     */
+    private $Options;
+
+
+
+
+
+
+
+
+
+    public function __construct()
+    {
+        $this->Classe = new ArrayCollection();
+        $this->Parent = new ArrayCollection();
+        $this->Options = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -248,29 +273,6 @@ class Eleve
         return $this;
     }
 
-    public function getParentResident(): ?string
-    {
-        return $this->ParentResident;
-    }
-
-    public function setParentResident(string $ParentResident): self
-    {
-        $this->ParentResident = $ParentResident;
-
-        return $this;
-    }
-
-    public function getAutreParentResident(): ?string
-    {
-        return $this->AutreParentResident;
-    }
-
-    public function setAutreParentResident(?string $AutreParentResident): self
-    {
-        $this->AutreParentResident = $AutreParentResident;
-
-        return $this;
-    }
 
     public function getPetitFrereOuSoeur(): ?string
     {
@@ -343,4 +345,78 @@ class Eleve
 
         return $this;
     }
+
+
+    /**
+     * @return Collection|Parents[]
+     */
+    public function getParent(): Collection
+    {
+        return $this->Parent;
+    }
+
+    public function addParent(Parents $parent): self
+    {
+        if (!$this->Parent->contains($parent)) {
+            $this->Parent[] = $parent;
+            $parent->setEleve($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParent(Parents $parent): self
+    {
+        if ($this->Parent->contains($parent)) {
+            $this->Parent->removeElement($parent);
+            // set the owning side to null (unless already changed)
+            if ($parent->getEleve() === $this) {
+                $parent->setEleve(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getClasse(): ?Classe
+    {
+        return $this->classe;
+    }
+
+    public function setClasse(?Classe $classe): self
+    {
+        $this->classe = $classe;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Option[]
+     */
+    public function getOptions(): Collection
+    {
+        return $this->Options;
+    }
+
+    public function addOption(Option $option): self
+    {
+        if (!$this->Options->contains($option)) {
+            $this->Options[] = $option;
+        }
+
+        return $this;
+    }
+
+    public function removeOption(Option $option): self
+    {
+        if ($this->Options->contains($option)) {
+            $this->Options->removeElement($option);
+        }
+
+        return $this;
+    }
+
+
+
+
 }

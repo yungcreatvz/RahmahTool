@@ -2,10 +2,18 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AnneeAcademiqueRepository")
+ * @UniqueEntity(
+ *     fields={"AnneeAcademique"},
+ *     message= "Cette année Académique est déja répertorié")
  */
 class AnneeAcademique
 {
@@ -16,76 +24,71 @@ class AnneeAcademique
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $N;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="string", length=255)
      */
     private $AnneeAcademique;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\OneToMany(targetEntity="App\Entity\Classe", mappedBy="AnneeAcademique")
      */
-    private $Matricule;
+    private $classes;
 
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $Classe;
+    public function __construct()
+    {
+        $this->classes = new ArrayCollection();
+    }
+
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getN(): ?int
-    {
-        return $this->N;
-    }
 
-    public function setN(int $N): self
-    {
-        $this->N = $N;
-
-        return $this;
-    }
-
-    public function getAnneeAcademique(): ?\DateTimeInterface
+    public function getAnneeAcademique(): ?string
     {
         return $this->AnneeAcademique;
     }
 
-    public function setAnneeAcademique(\DateTimeInterface $AnneeAcademique): self
+    public function setAnneeAcademique(string $AnneeAcademique): self
     {
         $this->AnneeAcademique = $AnneeAcademique;
 
         return $this;
     }
 
-    public function getMatricule(): ?int
+    /**
+     * @return Collection|Classe[]
+     */
+    public function getClasses(): Collection
     {
-        return $this->Matricule;
+        return $this->classes;
     }
 
-    public function setMatricule(int $Matricule): self
+    public function addClass(Classe $class): self
     {
-        $this->Matricule = $Matricule;
+        if (!$this->classes->contains($class)) {
+            $this->classes[] = $class;
+            $class->setAnneeAcademique($this);
+        }
 
         return $this;
     }
 
-    public function getClasse(): ?string
+    public function removeClass(Classe $class): self
     {
-        return $this->Classe;
-    }
-
-    public function setClasse(string $Classe): self
-    {
-        $this->Classe = $Classe;
+        if ($this->classes->contains($class)) {
+            $this->classes->removeElement($class);
+            // set the owning side to null (unless already changed)
+            if ($class->getAnneeAcademique() === $this) {
+                $class->setAnneeAcademique(null);
+            }
+        }
 
         return $this;
     }
+
 }

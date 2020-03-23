@@ -3,12 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Eleve;
+use App\Entity\Classe;
+use App\Entity\Option;
+use App\Entity\Parents;
 use App\Form\EleveType;
 use App\Repository\EleveRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/eleve")
@@ -31,6 +34,11 @@ class EleveController extends AbstractController
     public function new(Request $request): Response
     {
         $eleve = new Eleve();
+        $parent = new Parents();
+        $options = $this->getDoctrine()->getRepository(Eleve::class);
+
+        $eleve->addParent($parent);
+
         $form = $this->createForm(EleveType::class, $eleve);
         $form->handleRequest($request);
 
@@ -52,10 +60,14 @@ class EleveController extends AbstractController
     /**
      * @Route("/{id}", name="eleve_show", methods={"GET"})
      */
-    public function show(Eleve $eleve): Response
+    public function show(Eleve $eleve, Parents $parents, Classe $classe, Option $option): Response
     {
+        dump($eleve);
         return $this->render('eleve/show.html.twig', [
             'eleve' => $eleve,
+            'parent' =>$parents,
+            'classe' =>$classe,
+            'option' =>$option,
         ]);
     }
 

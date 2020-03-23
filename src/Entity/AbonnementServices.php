@@ -81,6 +81,12 @@ class AbonnementServices
      */
     private $Taekwando;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Eleve", inversedBy="abonnementServices", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $eleve;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -238,6 +244,18 @@ class AbonnementServices
     public function setTaekwando(bool $Taekwando): self
     {
         $this->Taekwando = $Taekwando;
+
+        return $this;
+    }
+
+    public function getEleve(): ?Eleve
+    {
+        return $this->eleve;
+    }
+
+    public function setEleve(Eleve $eleve): self
+    {
+        $this->eleve = $eleve;
 
         return $this;
     }

@@ -40,6 +40,15 @@ use Symfony\Component\HttpFoundation\Response;
                 ['title'=> "Dashboard",
                     'parag'=>"bienvenue dans la page dashboard"]);
         }
+        /**
+         *@Route("/qnav", name="qnav")
+         */
+        public function qnav(){
+            return $this->render(
+                'quicknav.html.twig',
+                ['title'=> "Dashboard",
+                    'parag'=>"bienvenue dans la page dashboard"]);
+        }
     }
 
 

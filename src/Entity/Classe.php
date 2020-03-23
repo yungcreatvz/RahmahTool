@@ -2,11 +2,18 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ClasseRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ClasseRepository")*
+ * @UniqueEntity(
+ *     fields={"Classe"},
+ *     message= "Cette classe existe déja dans la base")
  */
+
 class Classe
 {
     /**
@@ -17,160 +24,126 @@ class Classe
     private $id;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=255)
      */
-    private $CM2;
+    private $Classe;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\ManyToOne(targetEntity="App\Entity\AnneeAcademique", inversedBy="classes")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $HIFZ1;
+    private $AnneeAcademique;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\OneToMany(targetEntity="App\Entity\Option", mappedBy="Classe")
      */
-    private $HIFZ2;
+    private $options;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\OneToMany(targetEntity="App\Entity\Eleve", mappedBy="classe")
      */
-    private $HIFZ3;
+    private $eleve;
 
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $HIFZ4;
+    public function __construct()
+    {
+        $this->options = new ArrayCollection();
+        $this->eleve = new ArrayCollection();
+    }
 
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $HIFZ5;
 
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $MoyenneSection;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $PetiteSection;
-
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $ToutePetiteSection;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCM2(): ?string
+    public function getClasse(): ?string
     {
-        return $this->CM2;
+        return $this->Classe;
     }
 
-    public function setCM2(string $CM2): self
+    public function setClasse(string $Classe): self
     {
-        $this->CM2 = $CM2;
+        $this->Classe = $Classe;
 
         return $this;
     }
 
-    public function getHIFZ1(): ?string
+    public function getAnneeAcademique(): ?AnneeAcademique
     {
-        return $this->HIFZ1;
+        return $this->AnneeAcademique;
     }
 
-    public function setHIFZ1(string $HIFZ1): self
+    public function setAnneeAcademique(?AnneeAcademique $AnneeAcademique): self
     {
-        $this->HIFZ1 = $HIFZ1;
+        $this->AnneeAcademique = $AnneeAcademique;
 
         return $this;
     }
 
-    public function getHIFZ2(): ?string
+    /**
+     * @return Collection|Option[]
+     */
+    public function getOptions(): Collection
     {
-        return $this->HIFZ2;
+        return $this->options;
     }
 
-    public function setHIFZ2(string $HIFZ2): self
+    public function addOption(Option $option): self
     {
-        $this->HIFZ2 = $HIFZ2;
+        if (!$this->options->contains($option)) {
+            $this->options[] = $option;
+            $option->setClasse($this);
+        }
 
         return $this;
     }
 
-    public function getHIFZ3(): ?string
+    public function removeOption(Option $option): self
     {
-        return $this->HIFZ3;
-    }
-
-    public function setHIFZ3(string $HIFZ3): self
-    {
-        $this->HIFZ3 = $HIFZ3;
+        if ($this->options->contains($option)) {
+            $this->options->removeElement($option);
+            // set the owning side to null (unless already changed)
+            if ($option->getClasse() === $this) {
+                $option->setClasse(null);
+            }
+        }
 
         return $this;
     }
 
-    public function getHIFZ4(): ?string
+    /**
+     * @return Collection|Eleve[]
+     */
+    public function getEleve(): Collection
     {
-        return $this->HIFZ4;
+        return $this->eleve;
     }
 
-    public function setHIFZ4(string $HIFZ4): self
+    public function addEleve(Eleve $eleve): self
     {
-        $this->HIFZ4 = $HIFZ4;
+        if (!$this->eleve->contains($eleve)) {
+            $this->eleve[] = $eleve;
+            $eleve->setClasse($this);
+        }
 
         return $this;
     }
 
-    public function getHIFZ5(): ?string
+    public function removeEleve(Eleve $eleve): self
     {
-        return $this->HIFZ5;
-    }
-
-    public function setHIFZ5(string $HIFZ5): self
-    {
-        $this->HIFZ5 = $HIFZ5;
+        if ($this->eleve->contains($eleve)) {
+            $this->eleve->removeElement($eleve);
+            // set the owning side to null (unless already changed)
+            if ($eleve->getClasse() === $this) {
+                $eleve->setClasse(null);
+            }
+        }
 
         return $this;
     }
 
-    public function getMoyenneSection(): ?string
-    {
-        return $this->MoyenneSection;
-    }
 
-    public function setMoyenneSection(string $MoyenneSection): self
-    {
-        $this->MoyenneSection = $MoyenneSection;
 
-        return $this;
-    }
 
-    public function getPetiteSection(): ?string
-    {
-        return $this->PetiteSection;
-    }
-
-    public function setPetiteSection(string $PetiteSection): self
-    {
-        $this->PetiteSection = $PetiteSection;
-
-        return $this;
-    }
-
-    public function getToutePetiteSection(): ?string
-    {
-        return $this->ToutePetiteSection;
-    }
-
-    public function setToutePetiteSection(string $ToutePetiteSection): self
-    {
-        $this->ToutePetiteSection = $ToutePetiteSection;
-
-        return $this;
-    }
 }
