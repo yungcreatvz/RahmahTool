@@ -119,21 +119,21 @@ class Option
         return $this->Eleves;
     }
 
-    public function addElefe(Eleve $elefe): self
+    public function addEleve(Eleve $eleve): self
     {
-        if (!$this->Eleves->contains($elefe)) {
-            $this->Eleves[] = $elefe;
-            $elefe->addOption($this);
+        if (!$this->Eleves->contains($eleve)) {
+            $this->Eleves[] = $eleve;
+            $eleve->addOption($this);
         }
 
         return $this;
     }
 
-    public function removeElefe(Eleve $elefe): self
+    public function removeEleve(Eleve $eleve): self
     {
-        if ($this->Eleves->contains($elefe)) {
-            $this->Eleves->removeElement($elefe);
-            $elefe->removeOption($this);
+        if ($this->Eleves->contains($eleve)) {
+            $this->Eleves->removeElement($eleve);
+            $eleve->removeOption($this);
         }
 
         return $this;

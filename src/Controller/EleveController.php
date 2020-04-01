@@ -35,7 +35,7 @@ class EleveController extends AbstractController
     {
         $eleve = new Eleve();
         $parent = new Parents();
-        $options = $this->getDoctrine()->getRepository(Eleve::class);
+        $options = new Option();
 
         $eleve->addParent($parent);
 
@@ -53,6 +53,7 @@ class EleveController extends AbstractController
 
         return $this->render('eleve/new.html.twig', [
             'eleve' => $eleve,
+            'option'=> $options,
             'form' => $form->createView(),
         ]);
     }
@@ -60,15 +61,14 @@ class EleveController extends AbstractController
     /**
      * @Route("/{id}", name="eleve_show", methods={"GET"})
      */
-    public function show(Eleve $eleve, Parents $parents, Classe $classe, Option $option): Response
+    public function show(Eleve $eleve, Parents $parents, Classe $classe): Response
     {
         dump($eleve);
         return $this->render('eleve/show.html.twig', [
             'eleve' => $eleve,
             'parent' =>$parents,
             'classe' =>$classe,
-            'option' =>$option,
-        ]);
+            ]);
     }
 
     /**

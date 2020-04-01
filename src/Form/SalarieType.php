@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Salarie;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,14 +14,26 @@ class SalarieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('Matricule')
             ->add('Prenom')
             ->add('nom')
-            ->add('Poste')
-            ->add('TypeDeContract')
-            ->add('TelephonePortable')
             ->add('Email')
+
             ->add('AdresseDeResidence')
-            ->add('Matricule')
+            ->add('TelephonePortable',NumberType::class, [
+                'required' => true
+            ])
+            ->add('TypeDeContract',ChoiceType::class,[
+                'placeholder' => 'Selectionnez le Type',
+                'choices' => [
+                    'CDD' => 'CDD',
+                    'CDI' => 'CDI',
+                    'Prestataire' => 'Prestataire'
+                ],
+            ])
+            ->add('Poste')
+
+
         ;
     }
 

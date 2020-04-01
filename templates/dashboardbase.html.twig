@@ -11,9 +11,12 @@
     <title> WK - RahmahTool </title>
     {% block stylesheets %} {% endblock %}
     <!-- Custom fonts for this template-->
+    <link href="fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  {#  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" ></script> #}
 
 
 </head>
@@ -26,10 +29,14 @@
         {% block sidebar %}<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center"
+        <div class="container-fluid justify-content-center">
+            <img class="img-profile rounded-circle mt-4  " width="150px" src="https://www.jamf.com/jamf-nation/static/assets/avatar/generic-user.png">
+            <span class="text-center h3"> Bienvenue ! </span>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center"
             href="#">
-            <ion-icon name="browsers-outline"></ion-icon> <div> <h2> WK Admin </h2></div>
+           <span class="h5 text-gray-200 text-center">  {{ app.user.Prenom }} {{ app.user.nom }} </span>
         </a>
+        </div>
 
 
         <!-- Nav Item - Dashboard -->
@@ -274,9 +281,10 @@
                     <div class="topbar-divider d-none d-sm-block"></div>
                         #}
                     <!-- Nav Item - User Information -->
+                {% if app.user %}
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">User Wk</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"> {{ app.user.prenom }} {{ app.user.nom }} </span>
                             <img class="img-profile rounded-circle" src="https://www.jamf.com/jamf-nation/static/assets/avatar/generic-user.png">
                         </a>
                         <!-- Dropdown - User Information -->
@@ -306,10 +314,22 @@
                     <a class="nav-link dropdown-toggle" href="{{ path('app_logout') }}" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="mr-2 d-none d-lg-inline text-gray-600 small">Deconnexion</span>
                     </a>
+                </li>
+                </ul>
+            </nav>
+                    {% else %}
+
+                <li class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="{{ path('app_login') }}" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small"> Se Connecter </span>
+                    </a>
 
                 </li>
                 </ul>
                            </nav>
+
+
+            {% endif %}
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->

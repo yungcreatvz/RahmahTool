@@ -1,7 +1,6 @@
 {% extends 'dashboardbase.html.twig' %}
 {% block title %}Base des Parents {% endblock %}
     {% block stylesheets %}
-        <link href="\vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
         <!-- Custom styles for this template-->
         <link href="\css/sb-admin-2.min.css" rel="stylesheet">
@@ -12,7 +11,7 @@
 
 <div class="card shadow mr-3 ml-3 col-8">
     <div class="card-body">
-        <span><h1 class="text-secondary text-info mb-4 mt-3"> Profil de {{ eleve.prenoms }} {{ eleve.nom  }}  </h1> </span>
+        <span> <h2 class="text-secondary text-info mb-4 mt-3"> Profil de {{ eleve.prenoms }} {{ eleve.nom  }}  </h2> </span>
     <table class="table table-hover">
         <tbody>
             <tr class="tr">
@@ -136,9 +135,15 @@
     <div class="card shadow align-items-center bg-gray-400 col-lg-3"  >
         <img class="img-fluid bg-gradient-light mt-4 mb-4" src="https://static.thenounproject.com/png/2861597-200.png">
         <h3 class="text-white"> profil Scolaire </h3>
+        <span> Eleve : {{ eleve.prenoms }} {{ eleve.nom }} </span>
+
         <span> Classe : {{ classe.classe }} </span>
-        <span> Option : {{ option.options }} </span>
-        <span> {{ eleve.options.count }}</span>
+        <table> </br> <tr class="m-2"> Option :</tr>
+        {% for eleve in eleve.options %}
+            <td class="table table-primary">
+                <li > {{ eleve.options }} </li> </td>
+        </table>
+        {% endfor %}
 
 
     </div>

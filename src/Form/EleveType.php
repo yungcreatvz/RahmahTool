@@ -85,7 +85,7 @@ class EleveType extends AbstractType
             'Aucune' => 'Aucune'
                ],
             ])
-            ->add('TolerenceParacetamol', ChoiceType::class,[
+            ->add ('TolerenceParacetamol', ChoiceType::class,[
                 'choices' => [
                     'Oui' => 'Oui',
                     'Non' => 'Non'
