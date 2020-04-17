@@ -27,6 +27,15 @@ class EleveController extends AbstractController
             'eleves' => $eleveRepository->findAll(),
         ]);
     }
+    /**
+     * @Route("/eleveshow", name="eshow", methods={"GET"})
+     */
+    public function eshow(EleveRepository $eleveRepository): Response
+    {
+        return $this->render('eleve/eshow.html.twig', [
+            'eleves' => $eleveRepository->findAll(),
+        ]);
+    }
 
     /**
      * @Route("/new", name="eleve_new", methods={"GET","POST"})
@@ -82,7 +91,9 @@ class EleveController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('eleve_index');
+            return $this->redirectToRoute('eleve_index',[
+                'eleve' => $eleve,
+            ]);
         }
 
         return $this->render('eleve/edit.html.twig', [

@@ -13,9 +13,17 @@
 {% block body %}
 
     <span class="card shadow m-4">
-    <nav class="navbar navbar-expand-lg navbar-light bg-gradient-secondary" style="color: white">
-        <a class="navbar-brand ml-2  text-white" href="#"> Liste des Eleves > </a>
-        <button class="navbar-toggler"  style="background-color: slategrey"
+    <nav class="navbar navbar-expand-lg navbar-light p-3 bg-gradient-success rounded" style="color: white">
+        <a class="navbar-brand ml-2 btn rounded bg-gradient-success text-white mr-5" href="#">
+         <i class="fas fa-list mr-3"></i>   Liste des Eleves</a>
+        <a class="navbar-brand btn text-white btn rounded bg-gradient-success mr-5 " href="{{ path('eleve_new') }}">
+            <i class="fas fa-user-plus mr-3"></i> Inscription <span class="sr-only">(current)</span></a>
+        <a class="navbar-brand btn text-white btn rounded bg-gradient-success mr-5 " href="{{ path('eleve_new') }}">
+            <i class="fas fa-money-bill mr-3"></i> Paiement Mensualité <span class="sr-only">(current)</span></a>
+        <a class="navbar-brand btn text-white btn rounded bg-gradient-success mr-5 " href="{{ path('eshow') }}">
+            <i class="fas fa-users mr-3"></i> Effectifs des classe <span class="sr-only">(current)</span></a>
+
+       {# <button class="navb ar-toggler"  style="background-color: slategrey"
                 type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,19 +31,19 @@
         <div class="collapse navbar-collapse" id="navbarColor03">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link text-gray-400" href="{{ path('eleve_new') }}"> ajouter un profil <span class="sr-only">(current)</span></a>
                 </li>
+
             </ul>
-        </div>
+        </div>#}
     </nav>
     </span>
 
-<div class="card shadow m-4">
-    <div class="card-body">
-    <span> <h2 class="text-secondary mb-3"> Liste des Eleves</h2></span>
-        <div class="table-responsive" style="font-size: 12px">
+<div class="card shadow m-4" >
+    <div class="card-body ">
+    <span> <h2 class="text-secondary mt-2 mb-3"> <i class="fas fa-list mr-3" ></i> Liste des éleves inscrits </h2></span>
+        <div class="table-responsive text-black">
 
-    <table class="table" width="100%" cellspacing="0">
+    <table class="table table-hover" width="100%" cellspacing="" >
         <thead>
             <tr>
                 <th>Id</th>
@@ -60,7 +68,7 @@
         </thead>
         <tbody>
         {% for eleve in eleves %}
-            <tr>
+            <tr >
                 <td>{{ eleve.id }}</td>
                 <td>{{ eleve.Matricule }}</td>
                 <td>{{ eleve.Prenoms }}</td>
@@ -78,14 +86,14 @@
                 <td>{{ eleve.PreferenceManuel }}</td>
                 <td>{{ eleve.TolerenceParacetamol }}</td>
                 <td>{{ eleve.MaladieSignale }}</td>
-                <td>
-                    <a href="{{ path('eleve_show', {'id': eleve.id}) }}">show</a>
-                    <a href="{{ path('eleve_edit', {'id': eleve.id}) }}">edit</a>
+                <td class="d-flex d-inline-flex">
+                    <a class="btn-sm btn-success d-inline-flex mr-1" href="{{ path('eleve_show', {'id': eleve.id}) }}">Voir</a>
+                    <a class="btn-sm btn-warning d-inline-flex "href="{{ path('eleve_edit', {'id': eleve.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="20">no records found</td>
+                <td colspan="20"> Aucun profil enregistré</td>
             </tr>
         {% endfor %}
         </tbody>
@@ -94,7 +102,7 @@
 
         </div>
 
-    <a class="btn btn-primary btn" href="{{ path('eleve_new') }}">Create new</a>
+    <a class="btn btn-primary btn" href="{{ path('eleve_new') }}">Nouvelle Inscription</a>
 </div>
 
 {% endblock %}

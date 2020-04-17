@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Classe;
+use App\Entity\Eleve;
 use App\Form\ClasseType;
 use App\Repository\ClasseRepository;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -57,6 +59,7 @@ class ClasseController extends AbstractController
             'classe' => $classe,
         ]);
     }
+
 
     /**
      * @Route("/{id}/edit", name="classe_edit", methods={"GET","POST"})

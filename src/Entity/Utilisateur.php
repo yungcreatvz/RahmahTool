@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -55,6 +57,16 @@ class Utilisateur implements UserInterface
      */
     public $confirm_password;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Role", mappedBy="utilisateur")
+     */
+    private $RoleUtilisateur;
+
+    public function __construct()
+    {
+        $this->RoleUtilisateur = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -88,11 +100,10 @@ class Utilisateur implements UserInterface
      */
     public function getRoles(): array
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
 
-        return array_unique($roles);
+        // guarantee every user at least has ROLE_USER
+       $roles[] = 'ROLE_USER';
+       return array_unique($roles);
     }
 
     public function setRoles(array $roles): self
@@ -162,4 +173,34 @@ class Utilisateur implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|Role[]
+     */
+    public function getRoleUtilisateur(): Collection
+    {
+        return $this->RoleUtilisateur;
+    }
+
+    public function addRoleUtilisateur(Role $roleUtilisateur): self
+    {
+        if (!$this->RoleUtilisateur->contains($roleUtilisateur)) {
+            $this->RoleUtilisateur[] = $roleUtilisateur;
+            $roleUtilisateur->addUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRoleUtilisateur(Role $roleUtilisateur): self
+    {
+        if ($this->RoleUtilisateur->contains($roleUtilisateur)) {
+            $this->RoleUtilisateur->removeElement($roleUtilisateur);
+            $roleUtilisateur->removeUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+
 }

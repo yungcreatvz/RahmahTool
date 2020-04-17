@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Role;
 use App\Entity\Utilisateur;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -38,7 +40,12 @@ class RegistrationType extends AbstractType
                 $this->getConfiguration("Mot de Passe", "Definissez un Mot de Passe"))
             ->add('confirm_password',PasswordType::class,
                 $this->getConfiguration("Mot de Passe", "Confirmez votre Mot de Passe"))
-        ;
+            ->add('Roles',EntityType::class,[
+                'class' => Role::class,
+                'choice_label' => 'titre',
+                'multiple' => true,
+            ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver)

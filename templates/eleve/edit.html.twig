@@ -12,7 +12,7 @@
 <div class="container">
 <div class="card shadow mb-4">
     <div class="card-body m-2">
-    <h1>Modifier le profil de l'Eleve</h1>
+    <h1 class="text-info ml-4 mb-4 ">Modifier le profil de {{ eleve.prenoms}} {{ eleve.nom }}</h1>
 
     {{ include('eleve/_form.html.twig', {'button_label': 'Update'}) }}
 

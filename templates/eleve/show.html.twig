@@ -3,7 +3,6 @@
     {% block stylesheets %}
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
         <!-- Custom styles for this template-->
-        <link href="\css/sb-admin-2.min.css" rel="stylesheet">
     {% endblock %}
 
 {% block body %}
@@ -120,11 +119,10 @@
         </tbody>
     </table>
 
+    <div class="container-fluid d-inline-flex">
+    <a class="btn btn-primary btn btn-info d-inline-flex " href="{{ path('eleve_index') }}">Retourner sur la liste </a>
 
-    <div class="container">
-    <a class="btn btn-primary btn" href="{{ path('eleve_index') }}">back to list</a>
-
-    <a class="btn btn-primary btn" href="{{ path('eleve_edit', {'id': eleve.id}) }}">edit</a>
+    <a class="btn btn-primary btn btn-warning d-inline-flex" href="{{ path('eleve_edit', {'id': eleve.id}) }}">Modifier </a>
 
     {{ include('eleve/_delete_form.html.twig') }}
     </div>
@@ -133,8 +131,19 @@
 
 </div>
     <div class="card shadow align-items-center bg-gray-400 col-lg-3"  >
-        <img class="img-fluid bg-gradient-light mt-4 mb-4" src="https://static.thenounproject.com/png/2861597-200.png">
-        <h3 class="text-white"> profil Scolaire </h3>
+        {% set sexe = eleve.sexe %}
+
+        {% if sexe == 'Garçon' %}
+            <img class="img-fluid  mt-4" src="{{ asset('build/img/g.png') }}">
+            {% else %}
+                <img class="img-fluid  mt-4 mb-4" src="{{ asset('build/img/f.png') }}">
+
+        {% endif %}
+
+
+           {# <img class="img-fluid  mt-4 mb-4" src="{{ asset('build/img/f.png') }}"> #}
+    <hr>
+        <h3 class="text-white "> profil Scolaire </h3>
         <span> Eleve : {{ eleve.prenoms }} {{ eleve.nom }} </span>
 
         <span> Classe : {{ classe.classe }} </span>

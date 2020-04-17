@@ -5,17 +5,19 @@
 
 {% block body %}
 
-    <div class="container-fluid">
-        <h2> Main Dashboard</h2>
-
-        <div class="row">
+    <div class="container-fluid mb-4">
+        <div class="d-inline-flex">
+            <h2> Bienvenue {{ app.user.prenom }} {{ app.user.nom }}</h2>
+            <p class="d-inline-flex ml-5 btn btn-danger  "><i class="far fa-calendar-alt mr-2"></i>  {{ "now"|date("d/m/Y") }}
+                <i class="far fa-clock mr-2 ml-3"></i> {{ "now"|date('H:i:s') }}</p>
+        </div>
+        <div class="row mt-4">
             <div class="col">
-                <div class="card bg-gradient-info text-white mb-3 text-center">
+                <div class="card bg-gradient-dark text-white mb-3 text-center">
                     <div class="card-body">
                         <div class="row">
                             <div class="col4">
-                                <i class="icon-circle"></i>
-                            </div>
+                                <i class="fas fa-user fa-3x p-2 "></i>                             </div>
                             <div class="col-8">
                                 <h5 class="card-title"> {{ stats.eleve}} eleves inscris</h5>
                             </div>
@@ -28,8 +30,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col4">
-                                <i class="icon-circle"></i>
-                            </div>
+                                <i class="fas fa-columns fa-3x p-2 "></i>                            </div>
                             <div class="col-8">
                                 <h5 class="card-title"> {{ stats.classe }} Classes disponibles</h5>
                             </div>
@@ -39,11 +40,11 @@
             </div>
 
             <div class="col">
-                <div class="card bg-gradient-info text-white mb-3 text-center">
+                <div class="card bg-gradient-dark text-white mb-3 text-center">
                     <div class="card-body">
                         <div class="row">
                             <div class="col4">
-                                <i class="icon-circle"></i>
+                                <i class="fas fa-user-friends fa-3x p-2"></i>
                             </div>
                             <div class="col-8">
                                 <h5 class="card-title"> {{ stats.parents }} Parents Enregistrés </h5>
@@ -58,7 +59,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col4">
-                                <i class="icon-circle"></i>
+                                <i class="fas fa-users fa-3x p-2"></i>
                             </div>
                             <div class="col-8">
                                 <h5 class="card-title"> {{stats.employe}} Personnes Employés  </h5>
@@ -70,10 +71,10 @@
             </div>
         </div>
     </div>
-<div class="row container-fluid ">
+<div class="row container-fluid mt-2 mb-4 ">
     <div class="col-6">
         <div class=" bg-gradient-success shadow">
-            <h3 class="text-white text-center p-2"> Dernieres Incriptions </h3>
+            <h4 class="text-white p-3"> Dernieres Incriptions </h4>
             <div>
                 <table class="table table-hover bg-light">
                     <thead>
@@ -97,24 +98,28 @@
             </div> <br>
         </div>
     </div>
- {#   <div class="col-6">
+    <div class="col-6">
         <div class=" bg-gradient-success shadow">
-            <h3 class="text-white text-center p-2"> Dernieres Incriptions </h3>
+            <h4 class="text-white p-3"> Derniers Recrutements </h4>
             <div>
                 <table class="table table-hover bg-light">
                     <thead>
                     <tr>
-                        <th class=""> Classe </th>
+                        <th class=""> Poste </th>
                         <th> Prenom </th>
                         <th> Nom </th>
+                        <th> type de Contrat </th>
+
                     </tr>
                     </thead>
                     <tbody>
-                    {% for eleve in insrecent %}
+                    {% for salarie in recRecent %}
                         <tr>
-                            <td> {{ eleve.classe.classe }} </td>
-                            <td> {{ eleve.prenoms }} </td>
-                            <td> {{ eleve.nom }}  </td>
+                            <td> {{ salarie.Poste }} </td>
+                            <td> {{ salarie.Prenom }} </td>
+                            <td> {{ salarie.nom }}  </td>
+                            <td> {{ salarie.TypeDeContract }}  </td>
+
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -122,7 +127,78 @@
 
             </div> <br>
         </div>
-    </div>#}
+    </div>
 </div>
+
+    <div class="row container-fluid mt-2 ">
+        <div class="col mt-4">
+            <div class=" shadow mt-2 p-2">
+                <h3 class=" p-2 text-success" > <i class="fas fa-money-check "></i> Derniers Paiements </h3>
+                <div>
+                    <table class="table table-hover bg-light">
+                        <thead>
+                        <tr>
+                            <th class=""> service </th>
+                            <th> type </th>
+                            <th> Eleve </th>
+                            <th> classe </th>
+                            <th> Montant</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for eleve in insrecent %}
+                            <tr>
+                                <td> vide </td>
+                                <td> vide </td>
+                                <td> vide  </td>
+                                <td> vide  </td>
+                                <td> vide  </td>
+
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div> <br>
+            </div>
+        </div>
+
+    </div>
+    <div class="row container-fluid mt-2 ">
+        <div class="col mt-4">
+            <div class=" shadow mt-2 p-2">
+                <h3 class=" p-2 text-success" > <i class="fas fa-money-check "></i> Dernieres Depenses </h3>
+                <div>
+                    <table class="table table-hover bg-light" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th class=""> service </th>
+                            <th> Object </th>
+                            <th> montant </th>
+                            <th> description </th>
+                            <th> Montant</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for eleve in insrecent %}
+                            <tr>
+                                <td> vide </td>
+                                <td> vide </td>
+                                <td> vide  </td>
+                                <td> vide  </td>
+                                <td> vide  </td>
+
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div> <br>
+            </div>
+        </div>
+
+    </div>
+
+
 
 {% endblock %}
